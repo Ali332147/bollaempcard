@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bolla Employee Profile Card</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand-mark">B</div>
+  <div class="brand-copy"><span>BOLLA</span><small>EMPLOYEE DIRECTORY</small></div>
+  <div class="top-right"><span class="live-dot"></span> EMPLOYEE DIRECTORY</div>
+</header>
+<main class="wrap">
+  <section class="hero">
+    <div class="eyebrow"><span></span> PEOPLE • TEAM • COMMUNITY</div>
+    <h1>Bolla <em>Employee</em><br>Profile Card</h1>
+    <p class="subtitle">A clean, secure and professional employee directory.</p>
+    <div class="hero-meta"><span><b>06</b> SAMPLE PROFILES</span><i></i><span>PROFILE DETAILS MASKED</span></div>
+  </section>
+  <section class="toolbar">
+    <div><h2>Team directory</h2><p>Choose a card to verify access and view profile details.</p></div>
+    <div class="search-wrap"><span>⌕</span><input id="search" type="search" placeholder="Search employees..." aria-label="Search employees"></div>
+  </section>
+  <section class="grid" id="cards"></section>
+  <div class="add-area">
+    <button class="add-card-btn" id="addCardBtn" type="button"><span class="plus">＋</span> Add Employee Card</button>
+    <p>Add another employee profile using the form.</p>
+  </div>
+  <footer><span class="footer-logo">B</span><span> BOLLA EMPLOYEE PROFILE CARD</span><span class="footer-note">NAVY BLUE · EMPLOYEE DIRECTORY</span></footer>
+</main>
+
+<!-- Add Employee popup form -->
+<div class="modal-backdrop" id="modal" aria-hidden="true">
+  <section class="modal add-modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <button class="close" id="close" type="button" aria-label="Close dialog">×</button>
+    <div class="eyebrow"><span></span> EMPLOYEE DIRECTORY</div>
+    <h2 id="modalTitle">Add Employee Card</h2>
+    <p class="modal-desc left-desc">Enter employee information and upload a profile picture.</p>
+    <form id="employeeForm">
+      <div class="photo-upload">
+        <div class="photo-preview" id="photoPreview"><span class="photo-placeholder">＋</span><img id="photoPreviewImg" alt="Employee picture preview" hidden></div>
+        <div class="photo-copy"><strong>Employee Picture</strong><small>JPG, PNG or WEBP · max 4 MB</small>
+          <label class="upload-btn" for="employeePicture">Upload Picture</label>
+          <input id="employeePicture" type="file" accept="image/png,image/jpeg,image/webp" hidden>
+        </div>
+      </div>
+      <div class="form-grid">
+        <div class="field"><label for="fullName">Full Name <b>*</b></label><input id="fullName" name="fullName" placeholder="Enter full name" required></div>
+        <div class="field"><label for="empId">Emp ID <b>*</b></label><input id="empId" name="empId" placeholder="e.g. 3309" required></div>
+        <div class="field"><label for="storeName">Store Name <b>*</b></label><input id="storeName" name="storeName" placeholder="Enter store name" required></div>
+        <div class="field"><label for="phone">Phone <b>*</b></label><input id="phone" name="phone" type="tel" placeholder="Enter phone number" required></div>
+        <div class="field"><label for="email">Email <span>(optional)</span></label><input id="email" name="email" type="email" placeholder="name@example.com"></div>
+        <div class="field"><label for="member">Member <b>*</b></label><select id="member" name="member" required><option value="">Select member type</option><option>Team Member</option><option>Supervisor</option><option>Manager</option><option>Other</option></select></div>
+        <div class="field full-field"><label for="yearJoined">Year Joined <span class="auto-tag">AUTO</span></label><input id="yearJoined" name="yearJoined" readonly></div>
+      </div>
+      <p class="error form-error" id="formError" aria-live="polite"></p>
+      <div class="form-actions"><button type="button" class="cancel-btn" id="cancelAdd">Cancel</button><button class="unlock-btn" type="submit">＋ Add Employee Card</button></div>
+    </form>
+  </section>
+</div>
+
+<!-- Password-protected profile detail popup -->
+<div class="modal-backdrop" id="accessModal" aria-hidden="true">
+  <section class="modal" role="dialog" aria-modal="true" aria-labelledby="accessTitle">
+    <button class="close" id="accessClose" type="button" aria-label="Close dialog">×</button>
+    <div class="modal-icon">⌑</div>
+    <div class="eyebrow centered">SECURE PROFILE ACCESS</div>
+    <h2 id="accessTitle">Verify your access</h2>
+    <p class="modal-desc">Enter the password to view this employee profile.</p>
+    <form id="unlockForm">
+      <label for="password">Password</label>
+      <input id="password" type="password" placeholder="Enter password" autocomplete="off" required>
+      <p class="error" id="error" aria-live="polite"></p>
+      <button class="unlock-btn" type="submit">Unlock profile <span>↗</span></button>
+    </form>
+    <p class="hint">Password: <b>2695</b></p>
+  </section>
+</div>
+<div class="detail-backdrop" id="detail" aria-hidden="true">
+  <section class="detail-panel" role="dialog" aria-modal="true">
+    <button class="close" id="detailClose" type="button" aria-label="Close details">×</button>
+    <div class="detail-top"><div class="avatar large" id="detailAvatar"></div><div><span class="status-pill"><span></span> EMPLOYEE PROFILE</span><h2 id="detailName"></h2><p id="detailRole"></p></div></div>
+    <div class="detail-grid" id="detailGrid"></div>
+    <div class="demo-warning">DEMO ONLY · Use server-side authentication before storing real employee data.</div>
+  </section>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
